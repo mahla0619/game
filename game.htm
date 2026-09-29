@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <audio src="audio/menu.mp3" id="auStart"></audio>
+    <audio src="audio/marsh.mp3" id="auMarsh"></audio>
+    <audio src="audio/level.mp3" id="auLevel"></audio>
+    <audio src="audio/zoo1.mp3" id="auZoo"></audio>
+    <audio src="audio/player.mp3" id="auPlayerSel"></audio>
+    <audio src="audio/fly.wav" id="auFly"></audio>
+    <audio src="audio/sling.wav" id="auSling"></audio>
+    <audio src="audio/pigs.wav" id="auPigs"></audio>
+    <audio src="audio/bye3.m4a" id="auBye"></audio>
+    <audio src="audio/tnt.wav" id="auTnt"></audio>
+    <audio src="audio/rock.wav" id="auRock"></audio>
+    <audio src="audio/ice.wav" id="auIce"></audio>
+    <audio src="audio/win.mp3" id="auWin"></audio>
+
+    <div id="stage">
+      <video src="video/vid2.mp4" id="vidStart"></video>
+
+      <div class="woods"></div>
+      <div class="clouds"></div>
+
+      <div id="gameMenu" class="show">
+        <div class="slider">
+          <div id="char"></div>
+          <div id="right"></div>
+          <div id="left"></div>
+        </div>
+        <div id="nextBtn"></div>
+      </div>
+      <div id="selectLevel" class="hide">
+        <div id="homeBtn"></div>
+        <div id="selplayer"></div>
+        <div class="levels">
+          <i class="open" onclick="loadLevel(1)"></i> <i></i> <i></i> <i></i>
+          <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
+        </div>
+      </div>
+      <div id="levelone" class="hide">
+        <div class="ground"></div>
+        <div id="player"></div>
+        <div class="enemyBox"></div>
+      </div>
+    </div>
+
+    <script>
+      auStart.play();
+
+      nextBtn.onclick = function () {
+        gameMenu.className = "hide";
+        selectLevel.className = "show";
+      };
+
+      char.onclick = function () {
+        auZoo.play();
+        // auStart.pause();
+      };
+
+      function loadLevel(params) {
+        auMarsh.play();
+        auStart.pause();
+        selectLevel.className = "hide";
+        levelone.className = "show";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+ body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+      }
+      #stage {
+        width: 1200px;
+        height: 550px;
+        border: 1px solid #ccc;
+        transform: scale(0.9);
+        margin: 0 auto;
+        background: lightblue;
+
+        overflow: hidden;
+      }
+      #vidStart {
+        display: none;
+      }
+      .clouds {
+        width: 270px;
+        height: 270px;
+        background: url(images/clouds.png);
+        background-repeat: no-repeat 50%;
+        background-size: contain;
+        /* animation: wind 5s timing-function delay iteration-count direction
+          fill-mode; */
+        animation: wind 10s infinite alternate linear;
+      }
+      @keyframes wind {
+        0% {
+          transform: translateX(0px);
+        }
+        100% {
+          transform: translateX(900px);
+        }
+      }
+      .woods {
+        width: 800%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(images/woods2.jpg) repeat-x;
+        background-size: 1400px 550px;
+
+        animation: moveX 50s infinite alternate linear;
+      }
+      @keyframes moveX {
+        100% {
+          transform: translateX(-70%);
+        }
+      }
+
+      #gameMenu {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+      #gameMenu > .slider {
+        width: 50%;
+        height: 50%;
+        /* border: 1px solid #ccc; */
+        margin: 100px auto;
+        position: relative;
+      }
+      #gameMenu > .slider > #right {
+        width: 100px;
+        height: 80px;
+        position: absolute;
+        top: 35%;
+        right: 0;
+        background: url(images/right.png) no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        /* border: 1px solid red; */
+      }
+      #gameMenu > .slider > #left {
+        width: 100px;
+        height: 80px;
+        position: absolute;
+        top: 35%;
+        left: 0;
+        background: url(images/left.png) no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        /* border: 1px solid red; */
+      }
+      #gameMenu > .slider > #char {
+        width: 70%;
+        height: 100%;
+        background: url(gif/player12.gif) no-repeat 50%;
+        background-size: 150%;
+        cursor: pointer;
+        margin: auto;
+        /* border: 1px solid red; */
+      }
+      #gameMenu > #nextBtn {
+        width: 220px;
+        height: 100px;
+        position: absolute;
+        bottom: 10%;
+        left: 40%;
+        background: url(images/play.png) no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        /* border: 1px solid red; */
+      }
+
+      .hide {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
+      #selectLevel {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+      #selectLevel > #homeBtn {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: url(images/home.png) no-repeat 50%;
+        background-size: contain;
+        /* border: 1px solid #ccc; */
+      }
+      #selectLevel > #selplayer {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 40px;
+        right: 35px;
+        background: url(gif/player12.gif) no-repeat 50%;
+        background-size: 300%;
+        /* border: 1px solid #ccc; */
+      }
+      #selectLevel > .levels {
+        width: 60%;
+        margin: 150px auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid #ccc; */
+      }
+      #selectLevel > .levels > i {
+        width: 120px;
+        height: 120px;
+        background: url(images/lock.png) no-repeat 50%;
+        background-size: contain;
+        cursor: pointer;
+      }
+      #selectLevel > .levels > i:hover {
+        transform: scale(1.2);
+      }
+      #selectLevel > .levels > i.open {
+        background-image: url(images/level1.png);
+      }
+
+      /* level1 */
+      #levelone {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+      }
+      #levelone > .ground {
+        position: absolute;
+        width: 100%;
+        height: 40%;
+        left: 0;
+        bottom: 0;
+        background: url(images/land1.png) no-repeat;
+        background-size: 100%;
+      }
