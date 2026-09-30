@@ -24,7 +24,7 @@
       <div class="woods"></div>
       <div class="clouds"></div>
 
-      <div id="gameMenu" class="show">
+      <div id="gameMenu" class="hide">
         <div class="slider">
           <div id="char"></div>
           <div id="right"></div>
@@ -40,19 +40,53 @@
           <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
         </div>
       </div>
-      <div id="levelone" class="hide">
+      <div id="levelone" class="show">
         <div class="ground"></div>
         <div id="player"></div>
-        <div class="enemyBox"></div>
+        <div class="enemyBox">
+          <div id="khi"></div>
+          <div id="w1" class="wood"></div>
+          <div id="w2" class="wood"></div>
+          <div id="w3" class="wood"></div>
+          <div id="i1" class="ice"></div>
+          <div id="i2" class="ice"></div>
+          <div id="tnt"></div>
+          <div id="mouseBox"></div>
+          <div id="boom"></div>
+          <div id="bomb"></div>
+        </div>
+        <div id="mouseBox"></div>
+        <div class="cloud"></div>
+      </div>
+      <div id="levelTow" class="hide">
+        <div class="ground"></div>
+      </div>
+      <div id="result" class="hide">
+        <div></div>
       </div>
     </div>
 
     <script>
+      const chars = [
+        { pic: "player12.gif", voice: "zoo1.mp3", speed: 3.5, lock: 0 },
+        { pic: "player3.gif", voice: "zoo6.mp3", speed: 2.5, lock: 1 },
+        { pic: "player4.gif", voice: "zoo2.mp3", speed: 2.5, lock: 1 },
+        { pic: "player6.gif", voice: "zoo3.mp3", speed: 1.5, lock: 0 },
+        { pic: "player8.gif", voice: "zoo4.mp3", speed: 2, lock: 1 },
+        { pic: "player9.gif", voice: "zoo5.mp3", speed: 2, lock: 0 },
+        { pic: "player10.gif", voice: "zoo6.mp3", speed: 1, lock: 1 },
+        { pic: "player11.gif", voice: "zoo5.mp3", speed: 2, lock: 0 },
+      ];
+
       auStart.play();
 
       nextBtn.onclick = function () {
         gameMenu.className = "hide";
         selectLevel.className = "show";
+      };
+      homeBtn.onclick = function () {
+        gameMenu.className = "show";
+        selectLevel.className = "hide";
       };
 
       char.onclick = function () {
@@ -61,11 +95,60 @@
       };
 
       function loadLevel(params) {
-        auMarsh.play();
         auStart.pause();
-        selectLevel.className = "hide";
-        levelone.className = "show";
+        auMarsh.play();
+        aulevel.play();
+        if (params == 1) {
+          levelone.className = "show";
+        } else if (params == 2) {
+          selectLevel.className = "hide";
+        }
       }
+
+      //   engine
+      auStart.play();
+      player.onclick = function () {
+        this.style.left = "190px";
+        this.style.bottom = "170px";
+
+        let playerVoice = new Audio("audio/zoo1.mp3");
+        playerVoice.play();
+        mouseBox.style.display = "block";
+      };
+
+      mouseBox.onmousemove = function (event) {
+        auSling.play();
+        player.style.bottom = event.pageY / 2 + "px";
+        player.style.left = "110px";
+
+        mouseBox.innerHTML = event.pageY;
+
+        mouseBox.onclick = function () {
+          auFly.play();
+          console.log("0");
+
+          if (event.pageY < 280) {
+            player.className = "fly1";
+            console.log("01");
+          } else if (event.pageY > 340) {
+            console.log("02");
+            player.className = "fly2";
+
+            enemyBox.className = "destroy1";
+
+            auIce.play();
+            // auWin.play();
+          } else {
+            player.className = "fly3";
+
+            enemyBox.className = "destroy2";
+
+            auIce.play();
+            auTnt.play();
+            auBye.play();
+          }
+        };
+      };
     </script>
   </body>
 </html>

@@ -2,6 +2,11 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
+  /* fonot-family: */
+}
+@font-face {
+  font-family: birds;
+  src: url(../fonts/birds.ttf);
 }
 #stage {
   width: 1200px;
@@ -126,10 +131,11 @@ body {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 30px;
+  left: 30px;
   background: url(../images/home.png) no-repeat 50%;
   background-size: contain;
+  cursor: pointer;
   /* border: 1px solid #ccc; */
 }
 #selectLevel > #selplayer {
@@ -176,9 +182,230 @@ body {
 #levelone > .ground {
   position: absolute;
   width: 100%;
-  height: 40%;
+  height: 45%;
   left: 0;
   bottom: 0;
   background: url(../images/land1.png) no-repeat;
   background-size: 100%;
+}
+
+/*  enemy */
+
+#enemyBox {
+  /* //border:1px solid red; */
+  width: 200px;
+  height: 200px;
+  margin: 300px 800px;
+  /* //position:relative; */
+}
+
+.wood {
+  width: 15px;
+  height: 60px;
+  background: url(../images/choob1.png);
+  position: absolute;
+}
+.ice {
+  width: 30px;
+  height: 30px;
+  background: url(../images/ice.png);
+  position: absolute;
+}
+#w1 {
+  right: 265px;
+  bottom: 190px;
+  transition: 1s;
+  transform-origin: bottom;
+  transform: rotate(90deg);
+}
+#w2 {
+  right: 215px;
+  bottom: 73px;
+  transition: 1s;
+  transform-origin: bottom;
+  background-image: url(../images/choob1.png);
+}
+#w3 {
+  right: 235px;
+  bottom: 110px;
+  transform: rotate(90deg);
+  transition: 1s;
+}
+.ice {
+  width: 32px;
+  height: 30px;
+  background-image: url(../images/ice1.png);
+  position: absolute;
+}
+#i1 {
+  bottom: 103px;
+  right: 230px;
+}
+#i2 {
+  bottom: 73px;
+  right: 230px;
+}
+#tnt {
+  width: 41px;
+  height: 41px;
+  background-image: url(../images/tnt.png);
+  position: absolute;
+  bottom: 197px;
+  right: 223px;
+  transition: 0.5s;
+}
+.sun {
+  width: 130px;
+  height: 130px;
+  background-image: url(../images/sun.png);
+  background-size: contain;
+  position: absolute;
+  top: 30px;
+  right: 50%;
+  animation: sun 45s infinite linear alternate;
+}
+
+@keyframes sun {
+  100% {
+    transform: translatex(300%) rotate(2000deg);
+  }
+}
+
+#boom {
+  width: 200px;
+  height: 200px;
+  background-image: url(../images/boom.gif);
+  background-size: contain;
+  position: absolute;
+  bottom: 120px;
+  mix-blend-mode: screen;
+  right: 140px;
+}
+
+#mouseBox {
+  width: 30px;
+  height: 140px;
+  background: rgb(225, 225, 225, 0.6);
+  background-size: 150%;
+  position: absolute;
+  bottom: 150px;
+  transition: 0.3s;
+  left: 70px;
+  border-radius: 4px;
+  display: none;
+  /* right:225px; */
+}
+#player {
+  width: 100px;
+  height: 100px;
+  background: url(../gif/player12.gif) no-repeat 50%;
+  background-size: 200%;
+  position: absolute;
+  bottom: 140px;
+  left: 130px;
+  position: 0.2s;
+  cursor: pointer;
+  z-index: 200;
+}
+#khi {
+  width: 41px;
+  height: 41px;
+  background: url(../images/pig.png);
+  position: absolute;
+  bottom: 145px;
+  right: 220px;
+}
+
+/* fly animations */
+
+#player.fly1 {
+  animation: move1 2s ease-in-out forwards;
+}
+#player.fly2 {
+  animation: move2 1s ease-in-out forwards;
+}
+#player.fly3 {
+  animation: move3 1.2s ease-in-out forwards;
+}
+
+@keyframes move1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(1200px, -250px);
+  }
+}
+
+@keyframes move2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(760px, 130px);
+  }
+}
+
+@keyframes move3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  83% {
+    transform: translate(780px, -30px);
+  }
+  100% {
+    transform: translate(760px, 130px);
+  }
+}
+
+/*   destroy 1   */
+.destroy1 #i1 {
+  transform: rotate(20deg);
+}
+.destroy1 #w1 {
+  transform: translate(60px, 100px) rotate(100deg);
+}
+.destroy1 #w3 {
+  transform: rotate(80deg);
+}
+.destroy1 #tnt {
+  transform: translate(100px, 140px) rotate(640deg);
+}
+
+/*   destroy 2   */
+
+.destroy2 #i1 {
+  opacity: 0;
+}
+.destroy2 #i2 {
+  opacity: 0;
+}
+.destroy2 #w1 {
+  transform: translate(60px, 100px) rotate(-90deg);
+  transition-delay: 0s;
+}
+.destroy2 #w2 {
+  transform: rotate(85deg);
+  transition-delay: 0s;
+}
+.destroy2 #w3 {
+  transform: translate(5px, 50px) rotate(80deg);
+  transition-delay: 0s;
+}
+.destroy2 #tnt {
+  display: none;
+}
+.destroy2 #khi {
+  animation: pigOut 2.5s ease-in-out forwards;
+}
+@keyframes pigOut {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50px, -500px) rotate(700deg);
+  }
+  100% {
+    transform: translate(60px, 90px) rotate(1400deg);
+  }
 }
