@@ -24,26 +24,30 @@
       <div class="woods"></div>
       <div class="clouds"></div>
 
-      <div id="gameMenu" class="hide">
+      <div id="gameMenu" class="show">
         <div class="slider">
           <div id="char"></div>
           <div id="right"></div>
           <div id="left"></div>
         </div>
         <div id="nextBtn"></div>
+        <div id="message"><span id="messPoint">3 points</span> to unlock</div>
       </div>
+
       <div id="selectLevel" class="hide">
         <div id="homeBtn"></div>
         <div id="selplayer"></div>
         <div class="levels">
-          <i class="open" onclick="loadLevel(1)"></i> <i></i> <i></i> <i></i>
-          <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i> <i></i>
+          <i class="open" onclick="loadLevel(1)"></i>
+          <i onclick="loadLevel(2)"></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
       </div>
-      <div id="levelone" class="show">
+
+      <div id="levelone" class="hide">
         <div class="ground"></div>
         <div id="player"></div>
-        <div class="enemyBox">
+        <div id="enemyBox">
           <div id="khi"></div>
           <div id="w1" class="wood"></div>
           <div id="w2" class="wood"></div>
@@ -58,9 +62,11 @@
         <div id="mouseBox"></div>
         <div class="cloud"></div>
       </div>
+
       <div id="levelTow" class="hide">
         <div class="ground"></div>
       </div>
+
       <div id="result" class="hide">
         <div></div>
       </div>
@@ -68,14 +74,62 @@
 
     <script>
       const chars = [
-        { pic: "player12.gif", voice: "zoo1.mp3", speed: 3.5, lock: 0 },
-        { pic: "player3.gif", voice: "zoo6.mp3", speed: 2.5, lock: 1 },
-        { pic: "player4.gif", voice: "zoo2.mp3", speed: 2.5, lock: 1 },
-        { pic: "player6.gif", voice: "zoo3.mp3", speed: 1.5, lock: 0 },
-        { pic: "player8.gif", voice: "zoo4.mp3", speed: 2, lock: 1 },
-        { pic: "player9.gif", voice: "zoo5.mp3", speed: 2, lock: 0 },
-        { pic: "player10.gif", voice: "zoo6.mp3", speed: 1, lock: 1 },
-        { pic: "player11.gif", voice: "zoo5.mp3", speed: 2, lock: 0 },
+        {
+          pic: "player12.gif",
+          voice: "zoo1.mp3",
+          speed: 3.5,
+          lock: 0,
+          unlockScore: 9,
+        },
+        {
+          pic: "player3.gif",
+          voice: "zoo6.mp3",
+          speed: 2.5,
+          lock: 1,
+          unlockScore: 1,
+        },
+        {
+          pic: "player4.gif",
+          voice: "zoo2.mp3",
+          speed: 2.5,
+          lock: 1,
+          unlockScore: 5,
+        },
+        {
+          pic: "player6.gif",
+          voice: "zoo3.mp3",
+          speed: 1.5,
+          lock: 0,
+          unlockScore: 0,
+        },
+        {
+          pic: "player8.gif",
+          voice: "zoo4.mp3",
+          speed: 2,
+          lock: 1,
+          unlockScore: 8,
+        },
+        {
+          pic: "player9.gif",
+          voice: "zoo5.mp3",
+          speed: 2,
+          lock: 0,
+          unlockScore: 0,
+        },
+        {
+          pic: "player10.gif",
+          voice: "zoo6.mp3",
+          speed: 1,
+          lock: 1,
+          unlockScore: 2,
+        },
+        {
+          pic: "player11.gif",
+          voice: "zoo5.mp3",
+          speed: 2,
+          lock: 0,
+          unlockScore: 0,
+        },
       ];
 
       auStart.play();
@@ -97,10 +151,14 @@
       function loadLevel(params) {
         auStart.pause();
         auMarsh.play();
-        aulevel.play();
+        auLevel.play();
+
         if (params == 1) {
           levelone.className = "show";
+          selectLevel.className = "hide";
+          console.log(params);
         } else if (params == 2) {
+          levelTow.className = "show";
           selectLevel.className = "hide";
         }
       }
@@ -108,7 +166,7 @@
       //   engine
       auStart.play();
       player.onclick = function () {
-        this.style.left = "190px";
+        this.style.left = "200px";
         this.style.bottom = "170px";
 
         let playerVoice = new Audio("audio/zoo1.mp3");
@@ -118,13 +176,14 @@
 
       mouseBox.onmousemove = function (event) {
         auSling.play();
-        player.style.bottom = event.pageY / 2 + "px";
-        player.style.left = "110px";
+        player.style.bottom = event.pageY/2 + "px";
+        player.style.left = "120px";
 
         mouseBox.innerHTML = event.pageY;
 
         mouseBox.onclick = function () {
           auFly.play();
+
           console.log("0");
 
           if (event.pageY < 280) {
@@ -133,19 +192,24 @@
           } else if (event.pageY > 340) {
             console.log("02");
             player.className = "fly2";
-
-            enemyBox.className = "destroy1";
-
-            auIce.play();
+            // enemyBox.className = "destroy1";
+            // auIce.play();
             // auWin.play();
+            function destroyOne() {
+              enemyBox.className = "destroy1";
+              auIce.play();
+            }
+            setTimeout(destroyOne, 900);
           } else {
             player.className = "fly3";
 
-            enemyBox.className = "destroy2";
-
-            auIce.play();
-            auTnt.play();
-            auBye.play();
+            function destroyOne() {
+              enemyBox.className = "destroy2";
+              auTnt.play();
+              auIce.play();
+              auBye.play();
+            }
+            setTimeout(destroyOne, 1000);
           }
         };
       };

@@ -120,6 +120,7 @@ body {
 .show {
   display: block;
 }
+
 #selectLevel {
   position: absolute;
   width: 100%;
@@ -163,6 +164,7 @@ body {
   background: url(../images/lock.png) no-repeat 50%;
   background-size: contain;
   cursor: pointer;
+  transition: 0.3s;
 }
 #selectLevel > .levels > i:hover {
   transform: scale(1.2);
@@ -170,7 +172,9 @@ body {
 #selectLevel > .levels > i.open {
   background-image: url(../images/level1.png);
 }
-
+#selectLevel > .levels > i:nth-child(2) {
+  background-image: url(../images/level2.png);
+}
 /* level1 */
 #levelone {
   position: absolute;
@@ -188,7 +192,22 @@ body {
   background: url(../images/land1.png) no-repeat;
   background-size: 100%;
 }
-
+#levelTow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#levelTow > .ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../images/land2.png) no-repeat 50%;
+  background-size: 100%;
+}
 /*  enemy */
 
 #enemyBox {
