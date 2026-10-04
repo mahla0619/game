@@ -113,6 +113,14 @@ body {
   cursor: pointer;
   /* border: 1px solid red; */
 }
+/* .lock {
+  width: 120px;
+  height: 120px;
+  background: url(../images/lock.png) no-repeat 50%;
+  background-size: contain;
+  cursor: pointer;
+  transition: 0.3s;
+} */
 
 .hide {
   display: none;
